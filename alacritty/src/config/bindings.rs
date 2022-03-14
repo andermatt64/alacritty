@@ -205,6 +205,9 @@ pub enum Action {
     /// Start a backward buffer search.
     SearchBackward,
 
+    /// Toggle scale factor between 1.0 and 2.0
+    ToggleScaleFactor,
+
     /// No action.
     None,
 }
@@ -673,6 +676,7 @@ fn common_keybindings() -> Vec<KeyBinding> {
         NumpadAdd,      ModifiersState::CTRL;  Action::IncreaseFontSize;
         Minus,          ModifiersState::CTRL;  Action::DecreaseFontSize;
         NumpadSubtract, ModifiersState::CTRL;  Action::DecreaseFontSize;
+        S,        ModifiersState::CTRL | ModifiersState::SHIFT;  Action::ToggleScaleFactor;
     )
 }
 

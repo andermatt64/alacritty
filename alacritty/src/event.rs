@@ -424,6 +424,22 @@ impl<'a, N: Notify + 'a, T: EventListener> input::ActionContext<T> for ActionCon
         *self.dirty = true;
     }
 
+    fn toggle_scale_factor(&mut self) {
+        let new_scale_factor = {
+            let scale_factor = self.display.window.dpr;
+            if scale_factor >= 1.5 {
+                1.
+            } else {
+                2.
+            }
+        };
+        
+        let font = self.config.font.clone().with_size(*self.font_size);
+        self.display.window.dpr = new_scale_factor;
+        self.display.pending_update.set_font(font);
+        *self.dirty = true;        
+    }
+
     #[inline]
     fn pop_message(&mut self) {
         if !self.message_buffer.is_empty() {
